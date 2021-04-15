@@ -15,7 +15,7 @@ public class Project {
     public Project(int id, String title, double budget, String technologyDesc, LocalDate startDate, LocalDate endDate, String expectedDevTime, int projectOwnerId, int devteamId) {
         this.id = id;
         this.title = title;
-        this.budget = budget;
+        this.budget = Math.round(budget * 100) / 100.0;
         this.technologyDesc = technologyDesc;
         this.startDate = startDate;
         this.endDate = endDate;
@@ -24,6 +24,9 @@ public class Project {
         this.devteamId = devteamId;
     }
 
-    /* TODO */
+    public String getInsertValue() {
+        return "INSER INTO projects VALUES(" + this.id + ",'" + this.title + "'," + this.budget + ",'" + this.technologyDesc + "','" + this.startDate + "',"
+                + ((this.endDate == null) ? "null" : ("'" + this.endDate + "'")) + ",'" + this.expectedDevTime + "'," + this.projectOwnerId + "," + this.devteamId + ")";
+    }
 
 }

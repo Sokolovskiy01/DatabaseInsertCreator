@@ -8,5 +8,11 @@
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" name="pgJDBC" level="project" />
+    <orderEntry type="library" name="mongodb-driver-legacy-4.2.3" level="project" />
+    <orderEntry type="library" name="mongodb-driver-sync-4.2.3" level="project" />
+    <orderEntry type="library" name="mongodb-driver-core-4.2.3" level="project" />
+    <orderEntry type="library" name="mongo-java-driver-3.12.8" level="project" />
+    <orderEntry type="library" name="mongodb-driver-3.12.8" level="project" />
+    <orderEntry type="library" name="bson-4.2.3" level="project" />
   </component>
 </module>

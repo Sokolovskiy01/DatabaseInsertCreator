@@ -20,7 +20,7 @@ public class CompanyRepresentatives {
     }
 
     public String getInsertValue() {
-        return "INSER INTO company_representatives VALUES(" + this.id + ",'" + this.name + "','" + this.surname + "','" + this.dateOfJoin + "','" + this.role + "'," + this.companyId +");";
+        return "INSER INTO company_representatives VALUES(" + this.id + ",'" + this.name + "','" + this.surname + "','" + this.dateOfJoin + "','" + this.role + "'," + this.companyId +")";
     }
 
 }

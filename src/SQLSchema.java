@@ -33,7 +33,7 @@ public class SQLSchema {
         this.companyId = companyId;
         this.companyTitle = companyTitle;
         this.companyFoundationYear = new Random().nextInt(34) + 1980; // 1980 - 2014
-        this.dateOfFoundation = LocalDate.of(this.companyFoundationYear - 1900, random.nextInt(11), random.nextInt(28));
+        this.dateOfFoundation = LocalDate.of(this.companyFoundationYear, random.nextInt(11) + 1, random.nextInt(28));
         this.description = description;
     }
 
@@ -53,7 +53,7 @@ public class SQLSchema {
     public void createRandomDevelopers(int size) {
         for (int i = 0; i < size; i++) {
             Developer dev = new Developer(Main.getDevId(), this.getRandomString(random.nextInt(20)+ 8), this.getRandomString(random.nextInt(30) + 12),
-                    random.nextInt(30) + 18, LocalDate.of(random.nextInt(2020 - this.companyFoundationYear) + this.companyFoundationYear - 1900, random.nextInt(12), random.nextInt(28)),
+                    random.nextInt(30) + 18, LocalDate.of(random.nextInt(2020 - this.companyFoundationYear) + this.companyFoundationYear, random.nextInt(12) + 1, random.nextInt(28) + 1),
                     null,random.nextDouble() * 10000, this.getRandomString(10));
             this.devsList.add(dev);
         }
@@ -62,7 +62,7 @@ public class SQLSchema {
     public void createRandomManagers(int size) {
         for (int i = 0; i < size; i++) {
             Manager man = new Manager(Main.getManId(), this.getRandomString(random.nextInt(20)+ 8), this.getRandomString(random.nextInt(30) + 12),
-                    random.nextInt(30) + 18, LocalDate.of(random.nextInt(2020 - this.companyFoundationYear) + this.companyFoundationYear - 1900, random.nextInt(12), random.nextInt(25)),
+                    random.nextInt(30) + 18, LocalDate.of(random.nextInt(2020 - this.companyFoundationYear) + this.companyFoundationYear, random.nextInt(12) + 1, random.nextInt(25) + 1),
                     null,random.nextDouble() * 12000);
             this.managerList.add(man);
         }
@@ -79,9 +79,9 @@ public class SQLSchema {
         CompanyRepresentatives c1 = new CompanyRepresentatives(Main.getComp_repsId(),this.getRandomString(random.nextInt(20)+ 8), this.getRandomString(random.nextInt(30) + 12), this.dateOfFoundation, "CEO", this.companyId);
         CompanyRepresentatives c2 = new CompanyRepresentatives(Main.getComp_repsId(),this.getRandomString(random.nextInt(20)+ 8), this.getRandomString(random.nextInt(30) + 12), this.dateOfFoundation, "Co-founder", this.companyId);
         CompanyRepresentatives c3 = new CompanyRepresentatives(Main.getComp_repsId(),this.getRandomString(random.nextInt(20)+ 8), this.getRandomString(random.nextInt(30) + 12),
-                LocalDate.of(random.nextInt(2020 - this.companyFoundationYear) + this.companyFoundationYear - 1900, random.nextInt(12), random.nextInt(25)), "HR", this.companyId);
+                LocalDate.of(random.nextInt(2020 - this.companyFoundationYear) + this.companyFoundationYear, random.nextInt(12) + 1, random.nextInt(25) + 1), "HR", this.companyId);
         CompanyRepresentatives c4 = new CompanyRepresentatives(Main.getComp_repsId(),this.getRandomString(random.nextInt(20)+ 8), this.getRandomString(random.nextInt(30) + 12),
-                LocalDate.of(random.nextInt(2020 - this.companyFoundationYear) + this.companyFoundationYear - 1900, random.nextInt(12), random.nextInt(25)), "HR", this.companyId);
+                LocalDate.of(random.nextInt(2020 - this.companyFoundationYear) + this.companyFoundationYear, random.nextInt(12) + 1, random.nextInt(25) + 1), "HR", this.companyId);
         this.compReps.add(c1);
         this.compReps.add(c2);
         this.compReps.add(c3);

@@ -19,7 +19,7 @@ public class Developer {
         this.age = age;
         this.employment_date = employment_date;
         this.dismissal_date = dismissal_date;
-        this.salary = salary;
+        this.salary = Math.round(salary * 100) / 100.0;
         this.access_level = access_level;
     }
 
@@ -29,7 +29,7 @@ public class Developer {
 
     public String getInsertValue() {
         return "INSERT INTO developers VALUES(" + this.id + ",'" + this.name + "','" + this.surname + "','" + this.employment_date + "',"
-                + ((this.dismissal_date == null) ? "null," : "'" + this.dismissal_date + "',") + this.salary + ",'" + this.access_level + "');" ;
+                + ((this.dismissal_date == null) ? "null," : "'" + this.dismissal_date + "',") + this.salary + ",'" + this.access_level + "')" ;
     }
 
 }

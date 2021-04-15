@@ -18,12 +18,12 @@ public class Manager {
         this.age = age;
         this.employment_date = employment_date;
         this.dismissal_date = dismissal_date;
-        this.salary = salary;
+        this.salary = Math.round(salary * 100) / 100.0;
     }
 
     public String getInsertValue() {
         return "INSERT INTO managers VALUES(" + this.id + ",'" + this.name + "','" + this.surname + "','" + this.employment_date + "',"
-                + ((this.dismissal_date == null) ? "null," : "'" + this.dismissal_date + "',") + this.salary + ");" ;
+                + ((this.dismissal_date == null) ? "null," : "'" + this.dismissal_date + "',") + this.salary + ")" ;
     }
 
 }

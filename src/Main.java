@@ -1,3 +1,6 @@
+import com.mongodb.MongoClient;
+import com.mongodb.client.MongoDatabase;
+
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -26,19 +29,27 @@ public class Main {
 
     public static void main(String[] args) {
 
-        String url = "jdbc:postgresql://localhost/";
+        MongoClient client = new MongoClient("mongodb://localhost");
+        MongoDatabase bachelorTestMongo = client.getDatabase("bachelorTest");
+
+        for (String name : bachelorTestMongo.listCollectionNames()) {
+            System.out.println(name);
+        }
+
+
+        /*String postgreUrl = "jdbc:postgresql://localhost/";
         Properties props = new Properties();
         props.setProperty("user","postgres");
         props.setProperty("password","Sokol");
         //props.setProperty("ssl","true");
         try {
-            Connection conn = DriverManager.getConnection(url, props);
+            Connection conn = DriverManager.getConnection(postgreUrl, props);
             Statement st = conn.createStatement();
             ResultSet rs = st.executeQuery("SELECT * FROM test");
             ResultSetMetaData rsmd = rs.getMetaData();
-            /*PreparedStatement pst = conn.prepareStatement("INSERT INTO test VALUES (2,'Jan','Kowalski')");
-            int inserted = pst.executeUpdate();
-            System.out.println(inserted + " rows inserted");*/
+            //PreparedStatement pst = conn.prepareStatement("INSERT INTO test VALUES (2,'Jan','Kowalski')");
+            //int inserted = pst.executeUpdate();
+            //System.out.println(inserted + " rows inserted");
 
             while (rs.next())
             {
@@ -58,7 +69,7 @@ public class Main {
 
         // product license create manually
 
-        /*BufferedWriter fileoutput;
+        BufferedWriter fileoutput;
 
         try {
             fileoutput = new BufferedWriter(new FileWriter("ouput.txt"));
@@ -74,19 +85,14 @@ public class Main {
         System.out.println(d.getInsertValue());
         System.out.println(m.getInsertValue());*/
 
-        /*CompanyRepresentatives c1 = new CompanyRepresentatives(1,"Dmytro", "Sokolovskyi", LocalDate.now(), "CEO", 12);
 
-        System.out.println(c1.getInsertValue());
-
-        SQLSchema schema = new SQLSchema(getCompanyId(),"t","desc");
+        /*SQLSchema schema = new SQLSchema(getCompanyId(),"t","desc");
 
         schema.createRandomTeams(5);
         schema.createRandomManagers(15);
         schema.createRandomDevelopers(70);
         schema.connectDevelopersToTeams();
         schema.connectManagersToTeams();
-
-        schema.createRandomDevelopers(8);
 
         for (Developer dev : schema.devsList) {
             System.out.println(dev.getInsertValue());
