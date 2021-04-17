@@ -33,6 +33,7 @@ public class Main {
     public static void main(String[] args) {
 
         Random random = new Random();
+
         Statistics insertStatistics = new Statistics();
 
         MongoClient client = new MongoClient(mongodbUrl);
@@ -63,7 +64,7 @@ public class Main {
 
         try {
             Connection postgreConn = DriverManager.getConnection(postgreUrl, postgreProps);
-            PreparedStatement preparedStatement = postgreConn.prepareStatement("SELECT 1");
+            //PreparedStatement preparedStatement = postgreConn.prepareStatement("SELECT 1");
 
             System.out.println("Connection to MongoDB and PostgreSQL successfully established");
 
@@ -73,7 +74,7 @@ public class Main {
 
             for (int i = 0; i < approx_loops; i++){
 
-                /* Schema auto records init */
+                // Schema auto records init
                 SQLSchema schema = new SQLSchema();
                 schema.creaeteCompanyReps();
                 schema.createRandomTeamsAndProjects(5);
@@ -81,13 +82,12 @@ public class Main {
                 schema.createRandomDevelopers(70);
                 schema.connectDevelopersToTeams();
                 schema.connectManagersToTeams();
-                /* Schema auto records init */
+                // Schema auto records init
 
                 //System.out.println("Developers:");
                 for (Developer dev: schema.devsList) {
                     timeCheck1 = System.nanoTime();
-                    preparedStatement = postgreConn.prepareStatement(dev.getInsertValue());
-                    preparedStatement.executeUpdate();
+                    postgreConn.prepareStatement(dev.getInsertValue()).executeUpdate();
                     timeCheck2 = System.nanoTime();
                     developersMongo.insertOne(dev.getMongodbInsertObject());
                     timeCheck3 = System.nanoTime();
@@ -101,8 +101,7 @@ public class Main {
                 //System.out.println("Managers:");
                 for (Manager man: schema.managerList) {
                     timeCheck1 = System.nanoTime();
-                    preparedStatement = postgreConn.prepareStatement(man.getInsertValue());
-                    preparedStatement.executeUpdate();
+                    postgreConn.prepareStatement(man.getInsertValue()).executeUpdate();
                     timeCheck2 = System.nanoTime();
                     managersMongo.insertOne(man.getMongodbInsertObject());
                     timeCheck3 = System.nanoTime();
@@ -115,8 +114,7 @@ public class Main {
 
                 //System.out.println("Company:");
                 timeCheck1 = System.nanoTime();
-                preparedStatement = postgreConn.prepareStatement(schema.getCompanyInsertValue());
-                preparedStatement.executeUpdate();
+                postgreConn.prepareStatement(schema.getCompanyInsertValue()).executeUpdate();
                 timeCheck2 = System.nanoTime();
                 companiesMongo.insertOne(schema.getMongodbInsertObject());
                 timeCheck3 = System.nanoTime();
@@ -129,8 +127,7 @@ public class Main {
                 //System.out.println("Company representatives:");
                 for (CompanyRepresentatives cr : schema.compReps) {
                     timeCheck1 = System.nanoTime();
-                    preparedStatement = postgreConn.prepareStatement(cr.getInsertValue());
-                    preparedStatement.executeUpdate();
+                    postgreConn.prepareStatement(cr.getInsertValue()).executeUpdate();
                     timeCheck2 = System.nanoTime();
                     company_representativesMongo.insertOne(cr.getMongodbInsertObject());
                     timeCheck3 = System.nanoTime();
@@ -145,8 +142,7 @@ public class Main {
                 //System.out.println("Teams:");
                 for (Team t : schema.teamList) {
                     timeCheck1 = System.nanoTime();
-                    preparedStatement = postgreConn.prepareStatement(t.getInsertValue());
-                    preparedStatement.executeUpdate();
+                    postgreConn.prepareStatement(t.getInsertValue()).executeUpdate();
                     timeCheck2 = System.nanoTime();
                     teamsMongo.insertOne(t.getMongodbInsertObject());
                     timeCheck3 = System.nanoTime();
@@ -161,8 +157,7 @@ public class Main {
                 //System.out.println("Projects:");
                 for (Project p : schema.projectList) {
                     timeCheck1 = System.nanoTime();
-                    preparedStatement = postgreConn.prepareStatement(p.getInsertValue());
-                    preparedStatement.executeUpdate();
+                    postgreConn.prepareStatement(p.getInsertValue()).executeUpdate();
                     timeCheck2 = System.nanoTime();
                     projectsMongo.insertOne(p.getMongodbInsertObject());
                     timeCheck3 = System.nanoTime();
@@ -178,8 +173,7 @@ public class Main {
                 //System.out.println("Team_developers:");
                 timeCheck1 = System.nanoTime();
                 for (Map.Entry<Integer, Integer> team_developer : schema.teamDevelopers.entrySet()) {
-                    preparedStatement = postgreConn.prepareStatement("INSERT INTO team_developers VALUES(" + team_developer.getKey() + "," + team_developer.getValue() + ")");
-                    preparedStatement.executeUpdate();
+                    postgreConn.prepareStatement("INSERT INTO team_developers VALUES(" + team_developer.getKey() + "," + team_developer.getValue() + ")").executeUpdate();
                     //System.out.println("INSERT INTO team_developers VALUES(" + team_developer.getKey() + " , " + team_developer.getValue() + ")");
                 }
                 timeCheck2 = System.nanoTime();
@@ -196,8 +190,7 @@ public class Main {
                 //System.out.println("Team_managers:");
                 timeCheck1 = System.nanoTime();
                 for (Map.Entry<Integer, Integer> team_manager : schema.teamManagers.entrySet()) {
-                    preparedStatement = postgreConn.prepareStatement("INSERT INTO team_managers VALUES(" + team_manager.getKey() + " , " + team_manager.getValue() + ")");
-                    preparedStatement.executeUpdate();
+                    postgreConn.prepareStatement("INSERT INTO team_managers VALUES(" + team_manager.getKey() + " , " + team_manager.getValue() + ")").executeUpdate();
                     //System.out.println("INSERT INTO team_managers VALUES(" + team_manager.getKey() + " , " + team_manager.getValue() + ")");
                 }
                 timeCheck2 = System.nanoTime();
@@ -215,7 +208,7 @@ public class Main {
                     System.out.println("Loop : " + i + ", Records inserted: " + ((i + 1) * 185) + "/" + approx_records);
                 }
             }
-            preparedStatement.close();
+            //preparedStatement.close();
         }
         catch (SQLException SQLex) {
             SQLex.printStackTrace();

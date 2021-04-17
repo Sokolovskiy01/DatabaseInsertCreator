@@ -9,8 +9,8 @@ public class Statistics {
     }
 
     public void print() {
-        System.out.println("MongoDB records insertion took " + this.mongoDBInsertTime + " nanoseconds (" + this.postgreSQLInsertTime / 100000 + " ms)");
-        System.out.println("PostgreSQL records insertion took " + this.postgreSQLInsertTime + " nanoseconds (" + this.postgreSQLInsertTime / 100000 + " ms)");
+        System.out.println("MongoDB records insertion took " + this.mongoDBInsertTime + " nanoseconds (" + this.mongoDBInsertTime / 1000000 + " ms)");
+        System.out.println("PostgreSQL records insertion took " + this.postgreSQLInsertTime + " nanoseconds (" + this.postgreSQLInsertTime / 1000000 + " ms)");
         if(this.mongoDBInsertTime > this.postgreSQLInsertTime) System.out.println("PostgreSQL faster");
         else System.out.println("MongoDB faster");
     }

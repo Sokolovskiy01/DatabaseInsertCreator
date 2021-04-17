@@ -49,7 +49,7 @@ public class Project {
     public Document getMongodbInsertObject() { return new Document(this.mongodbInsertObject); }
 
     public ObjectId getMongoId() { return (ObjectId) this.mongodbInsertObject.get("_id"); }
-    public void setProjectOwnerIdMongoId(ObjectId _id) { this.mongodbInsertObject.put("projectOwnerId", _id); }
-    public void setDevteamIdMongoId(ObjectId _id) { this.mongodbInsertObject.put("devteamId", _id); }
+    public void setProjectOwnerIdMongoId(ObjectId _id) { this.mongodbInsertObject.put("project_owner_id", _id); }
+    public void setDevteamIdMongoId(ObjectId _id) { this.mongodbInsertObject.put("devteam_id", _id); }
 
 }
