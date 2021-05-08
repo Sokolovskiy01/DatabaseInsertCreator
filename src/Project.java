@@ -42,7 +42,7 @@ public class Project {
     }
 
     public String getInsertValue() {
-        return "INSERT INTO projects VALUES(" + this.id + ",'" + this.title + "'," + this.budget + ",'" + this.technologyDesc + "','" + this.startDate + "',"
+        return "(" + this.id + ",'" + this.title + "'," + this.budget + ",'" + this.technologyDesc + "','" + this.startDate + "',"
                 + ((this.endDate == null) ? "null" : ("'" + this.endDate + "'")) + ",'" + this.expectedDevTime + "'," + this.projectOwnerId + "," + this.devteamId + ")";
     }
 

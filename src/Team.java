@@ -27,7 +27,7 @@ public class Team {
     }
 
     public String getInsertValue() {
-        return "INSERT INTO teams VALUES (" + this.id + ",'" + this.name + "','" + this.description + "'," + this.company_id + ")";
+        return "(" + this.id + ",'" + this.name + "','" + this.description + "'," + this.company_id + ")";
     }
 
     public Document getMongodbInsertObject() { return new Document(this.mongodbInsertObject); }

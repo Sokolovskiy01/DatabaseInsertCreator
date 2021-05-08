@@ -35,7 +35,7 @@ public class CompanyRepresentatives {
     }
 
     public String getInsertValue() {
-        return "INSERT INTO company_representatives VALUES(" + this.id + ",'" + this.name + "','" + this.surname + "','" + this.dateOfJoin + "','" + this.role + "'," + this.companyId +")";
+        return "(" + this.id + ",'" + this.name + "','" + this.surname + "','" + this.dateOfJoin + "','" + this.role + "'," + this.companyId +")";
     }
 
     public Document getMongodbInsertObject() { return new Document(this.mongodbInsertObject); }

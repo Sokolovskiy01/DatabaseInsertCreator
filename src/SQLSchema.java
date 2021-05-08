@@ -121,7 +121,7 @@ public class SQLSchema {
 
     public void connectDevelopersToTeams() {
         for (int i = 0; i < this.teamList.size(); i++) {
-            for (int j = i * 14; j < (i + 1) * 14; j++) {
+            for (int j = i * (this.devsList.size() / this.teamList.size()); j < (i + 1) * (this.devsList.size() / this.teamList.size()); j++) {
                 this.teamDevelopers.put(this.devsList.get(j).id, this.teamList.get(i).id);
                 HashMap<String, Object> insert = new HashMap<>();
                 insert.put("team_id", this.teamList.get(i).getMongoId());
@@ -131,20 +131,19 @@ public class SQLSchema {
         }
     }
 
+    // should be 1 to 1
     public void connectManagersToTeams() {
         for (int i = 0; i < this.teamList.size(); i++) {
-            for (int j = i * 3; j < (i + 1) * 3; j++) {
-                this.teamManagers.put(this.managerList.get(j).id, this.teamList.get(i).id);
-                HashMap<String, Object> insert = new HashMap<>();
-                insert.put("team_id", this.teamList.get(i).getMongoId());
-                insert.put("manager_id", this.managerList.get(j).getMongoId());
-                this.teamManagersMongo.add(insert);
-            }
+            this.teamManagers.put(this.managerList.get(i).id, this.teamList.get(i).id);
+            HashMap<String, Object> insert = new HashMap<>();
+            insert.put("team_id", this.teamList.get(i).getMongoId());
+            insert.put("manager_id", this.managerList.get(i).getMongoId());
+            this.teamManagersMongo.add(insert);
         }
     }
 
     public String getCompanyInsertValue() {
-        return "INSERT INTO companies VALUES(" + this.companyId + ",'" + this.companyTitle + "','" + this.dateOfFoundation + "','" + this.description + "')";
+        return "(" + this.companyId + ",'" + this.companyTitle + "','" + this.dateOfFoundation + "','" + this.description + "')";
     }
 
     public Document getMongodbInsertObject() { return new Document(this.mongodbInsertObject); }

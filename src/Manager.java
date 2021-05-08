@@ -38,7 +38,7 @@ public class Manager {
     }
 
     public String getInsertValue() {
-        return "INSERT INTO managers VALUES(" + this.id + ",'" + this.name + "','" + this.surname + "'," + this.age + ",'" + this.employment_date.toString() + "',"
+        return "(" + this.id + ",'" + this.name + "','" + this.surname + "'," + this.age + ",'" + this.employment_date.toString() + "',"
                 + ((this.dismissal_date == null) ? "null," : "'" + this.dismissal_date.toString() + "',") + this.salary + ")" ;
     }
 
